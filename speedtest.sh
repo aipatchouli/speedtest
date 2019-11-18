@@ -35,12 +35,7 @@ geekbench4() {
 	echo -e "   Multi Core : $GEEKBENCH_SCORES_MULTI" | tee -a $log
 	[ ! -z "$GEEKBENCH_URL_CLAIM" ] && echo -e "$GEEKBENCH_URL_CLAIM" > geekbench4_claim.url 2> /dev/null
 	echo "" | tee -a $log
-	echo -e " Cooling down..."
-	sleep 9
-	echo -ne "\e[1A"; echo -ne "\033[0K\r"
-	echo -e " Ready to continue..."
-	sleep 3
-	echo -ne "\e[1A"; echo -ne "\033[0K\r"
+	
 }
 
 
