@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 geekbench4() {
 	echo "" | tee -a $log
