@@ -59,7 +59,7 @@ geekbench5() {
 	GEEKBENCH_URL_CLAIM=$(echo $GEEKBENCH_URL | awk '{ print $2 }')
 	GEEKBENCH_URL=$(echo $GEEKBENCH_URL | awk '{ print $1 }')
 	sleep 0.1
-	GEEKBENCH_SCORES=$(curl -s $GEEKBENCH_URL | grep "class='score' rowspan")
+	GEEKBENCH_SCORES=$(curl -s $GEEKBENCH_URL | grep "class='score'")
 	GEEKBENCH_SCORES_SINGLE=$(echo $GEEKBENCH_SCORES | awk -v FS="(>|<)" '{ print $3 }')
 	GEEKBENCH_SCORES_MULTI=$(echo $GEEKBENCH_SCORES | awk -v FS="(<|>)" '{ print $7 }')
 	
