@@ -141,6 +141,7 @@ cleanup() {
 	rm -rf geekbench;
 	rm -f gb4.sh;
 	rm -f gb5.sh;
+	rm -f gb.sh;
 }
 
 
