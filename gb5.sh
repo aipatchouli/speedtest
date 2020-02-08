@@ -108,6 +108,7 @@ cleanup() {
 	rm -f ip_json.json;
 	rm -f geekbench5_claim.url;
 	rm -rf geekbench;
+	rm -f gb5.sh
 }
 
 
