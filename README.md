@@ -2,4 +2,4 @@
 
 https://bench.monster/speedtest.html
 
-`curl -LsO bench.monster/speedtest.sh; bash gb4.sh`
+`curl -LsO bench.monster/gb4.sh; bash gb4.sh`
