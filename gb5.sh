@@ -47,7 +47,7 @@ benchinit() {
 	start=$(date +%s) 
 }
 
-geekbench4() {
+geekbench5() {
 	echo "" | tee -a $log
 	echo -e " Performing Geekbench v5 CPU Benchmark test. Please wait..."
 
@@ -68,7 +68,7 @@ geekbench4() {
 	echo "" | tee -a $log
 	echo -e "  Single Core : $GEEKBENCH_SCORES_SINGLE  $grank" | tee -a $log
 	echo -e "   Multi Core : $GEEKBENCH_SCORES_MULTI" | tee -a $log
-	[ ! -z "$GEEKBENCH_URL_CLAIM" ] && echo -e "$GEEKBENCH_URL_CLAIM" > geekbench4_claim.url 2> /dev/null
+	[ ! -z "$GEEKBENCH_URL_CLAIM" ] && echo -e "$GEEKBENCH_URL_CLAIM" > geekbench5_claim.url 2> /dev/null
 	echo "" | tee -a $log
 	echo -e " Cooling down..."
 	sleep 0.1
@@ -106,7 +106,7 @@ cleanup() {
 	rm -f speedtest.sh;
 	rm -f tools.py;
 	rm -f ip_json.json;
-	rm -f geekbench4_claim.url;
+	rm -f geekbench5_claim.url;
 	rm -rf geekbench;
 }
 
@@ -115,5 +115,5 @@ cleanup() {
 
 case $1 in
    	'gb'|'-gb'|'--gb'|'geek'|'-geek'|'--geek' )
-		geekbench4;cleanup;;
+		geekbench5;cleanup;;
 esac
