@@ -78,6 +78,36 @@ geekbench4() {
 	echo -ne "\e[1A"; echo -ne "\033[0K\r"
 }
 
+geekbench5() {
+	echo "" | tee -a $log
+	echo -e " Performing Geekbench v5 CPU Benchmark test. Please wait..."
+
+	GEEKBENCH_PATH=$HOME/geekbench
+	mkdir -p $GEEKBENCH_PATH
+	curl -s http://cdn.geekbench.com/Geekbench-5.1.0-Linux.tar.gz  | tar xz --strip-components=1 -C $GEEKBENCH_PATH
+	GEEKBENCH_TEST=$($GEEKBENCH_PATH/geekbench5 | grep "https://browser")
+	GEEKBENCH_URL=$(echo -e $GEEKBENCH_TEST | head -1)
+	GEEKBENCH_URL_CLAIM=$(echo $GEEKBENCH_URL | awk '{ print $2 }')
+	GEEKBENCH_URL=$(echo $GEEKBENCH_URL | awk '{ print $1 }')
+	sleep 0.1
+	GEEKBENCH_SCORES=$(curl -s $GEEKBENCH_URL | grep "class='score'")
+	GEEKBENCH_SCORES_SINGLE=$(echo $GEEKBENCH_SCORES | awk -v FS="(>|<)" '{ print $3 }')
+	GEEKBENCH_SCORES_MULTI=$(echo $GEEKBENCH_SCORES | awk -v FS="(<|>)" '{ print $7 }')
+	
+	echo -ne "\e[1A"; echo -ne "\033[0K\r"
+	echo " Geekbench v5 CPU Benchmark:"
+	echo "" | tee -a $log
+	echo -e "  Single Core : $GEEKBENCH_SCORES_SINGLE  $grank" | tee -a $log
+	echo -e "   Multi Core : $GEEKBENCH_SCORES_MULTI" | tee -a $log
+	[ ! -z "$GEEKBENCH_URL_CLAIM" ] && echo -e "$GEEKBENCH_URL_CLAIM" > geekbench5_claim.url 2> /dev/null
+	echo "" | tee -a $log
+	echo -e " Cooling down..."
+	sleep 0.1
+	echo -ne "\e[1A"; echo -ne "\033[0K\r"
+	echo -e " Ready to continue..."
+	sleep 0.1
+	echo -ne "\e[1A"; echo -ne "\033[0K\r"
+}
 
 print_end_time() {
 	echo "" | tee -a $log
@@ -107,8 +137,10 @@ cleanup() {
 	rm -f tools.py;
 	rm -f ip_json.json;
 	rm -f geekbench4_claim.url;
+	rm -f geekbench5_claim.url;
 	rm -rf geekbench;
 	rm -f gb4.sh;
+	rm -f gb5.sh;
 }
 
 
@@ -116,5 +148,5 @@ cleanup() {
 
 case $1 in
    	'gb'|'-gb'|'--gb'|'geek'|'-geek'|'--geek' )
-		geekbench4;cleanup;;
+		geekbench4;cleanup;geekbench5;cleanup;;
 esac
