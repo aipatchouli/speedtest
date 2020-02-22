@@ -48,7 +48,6 @@ benchinit() {
 }
 
 geekbench4() {
-	echo "" | tee -a $log
 	echo -e " Performing Geekbench v4 CPU Benchmark test. Please wait..."
 
 	GEEKBENCH_PATH=$HOME/geekbench
@@ -65,11 +64,11 @@ geekbench4() {
 	
 	echo -ne "\e[1A"; echo -ne "\033[0K\r"
 	echo " Geekbench v4 CPU Benchmark:"
-	echo "" | tee -a $log
+	
 	echo -e "  Single Core : $GEEKBENCH_SCORES_SINGLE  $grank" | tee -a $log
 	echo -e "   Multi Core : $GEEKBENCH_SCORES_MULTI" | tee -a $log
 	[ ! -z "$GEEKBENCH_URL_CLAIM" ] && echo -e "$GEEKBENCH_URL_CLAIM" > geekbench4_claim.url 2> /dev/null
-	echo "" | tee -a $log
+	
 	echo -e " Cooling down..."
 	sleep 0.1
 	echo -ne "\e[1A"; echo -ne "\033[0K\r"
@@ -79,7 +78,7 @@ geekbench4() {
 }
 
 geekbench5() {
-	echo "" | tee -a $log
+	
 	echo -e " Performing Geekbench v5 CPU Benchmark test. Please wait..."
 
 	GEEKBENCH_PATH=$HOME/geekbench
@@ -96,11 +95,11 @@ geekbench5() {
 	
 	echo -ne "\e[1A"; echo -ne "\033[0K\r"
 	echo " Geekbench v5 CPU Benchmark:"
-	echo "" | tee -a $log
+	
 	echo -e "  Single Core : $GEEKBENCH_SCORES_SINGLE  $grank" | tee -a $log
 	echo -e "   Multi Core : $GEEKBENCH_SCORES_MULTI" | tee -a $log
 	[ ! -z "$GEEKBENCH_URL_CLAIM" ] && echo -e "$GEEKBENCH_URL_CLAIM" > geekbench5_claim.url 2> /dev/null
-	echo "" | tee -a $log
+	
 	echo -e " Cooling down..."
 	sleep 0.1
 	echo -ne "\e[1A"; echo -ne "\033[0K\r"
@@ -110,7 +109,7 @@ geekbench5() {
 }
 
 print_end_time() {
-	echo "" | tee -a $log
+	
 	end=$(date +%s) 
 	time=$(( $end - $start ))
 	if [[ $time -gt 60 ]]; then
