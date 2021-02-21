@@ -53,7 +53,7 @@ geekbench5() {
 
 	GEEKBENCH_PATH=$HOME/geekbench
 	mkdir -p $GEEKBENCH_PATH
-	curl -s http://cdn.geekbench.com/Geekbench-5.1.0-Linux.tar.gz  | tar xz --strip-components=1 -C $GEEKBENCH_PATH
+	curl -s http://cdn.geekbench.com/Geekbench-5.3.2-Linux.tar.gz  | tar xz --strip-components=1 -C $GEEKBENCH_PATH
 	GEEKBENCH_TEST=$($GEEKBENCH_PATH/geekbench5 | grep "https://browser")
 	GEEKBENCH_URL=$(echo -e $GEEKBENCH_TEST | head -1)
 	GEEKBENCH_URL_CLAIM=$(echo $GEEKBENCH_URL | awk '{ print $2 }')
